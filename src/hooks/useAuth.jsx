@@ -3,7 +3,7 @@ import { db } from '../firebase/config'
 import {
     getAuth,
     createUserWithEmailAndPassword,
-    signWithEmailAndPassword,
+    // signWithEmailAndPassword,
     updateProfile,
     signOut
 } from 'firebase/auth'
@@ -44,6 +44,8 @@ export const useAuth = () => {
                 displayName: data.displayName
             })
 
+            setLoading(false)
+
             return user
 
         } catch (error) {
@@ -61,10 +63,10 @@ export const useAuth = () => {
                     systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde."
                 }
 
+                setLoading(false)
                 setError(systemErrorMessage)
         }
 
-        setLoading(false)
     }
 
     useEffect(() => {
